@@ -1,0 +1,101 @@
+*{             /*This * is an universal selector. The properties which we give here are applied to all the elements*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'montserrat';  
+    color: #fff;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#cursor{
+    height: 20px;
+    width: 20px;
+    background-color: #95C11E;
+    border-radius: 50%;
+    position: fixed;
+    z-index: 99;
+}
+#cursor-blur{
+    height: 350px;
+    width: 350px;
+    background-color: rgba(150, 193, 30, 0.157);
+    border-radius: 50%;
+    position: fixed;
+    filter: blur(40px);
+    z-index: 9;   /*We are putting cursor-blur above main div(which is transluscent black and turns completely black on scrolling due to scroll trigger animation) so that we can see the true color of the cursor-blur clearly*/
+}
+#nav{
+    width: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center; /*NOTE that align-items and justify-content doesn't works without display: flex*/
+    justify-content: flex-start; /*matlab flexbox(div jiske andar display: flex kiya ho) ke start main aa jaana*/
+    padding: 0 150px;
+    gap: 30px;   /*To give gap btw. the nav div headings*/
+    position: fixed;    /*To keep it fixed even while scrolling the page*/
+    z-index: 99;  /*to move the nav div upwards in z axis by 99 units*/
+}
+#nav img{
+    height: 60px; 
+}
+#nav h4{
+    text-transform: uppercase;
+    font-weight: 500;   /*to adjust the thickness of the font*/
+    font-size: 12px;
+    
+}
+video{    /*Note that this is not a div*/
+    height: 100%; /*div ke barabar height aur width hogi video ki*/
+    width: 100%;
+    object-fit: cover;  /*To cover the full page with the video*/
+    position: fixed;
+    z-index: -1;  /*Video will always remain beneath*/
+}
+#main{    /*We are not giving height and width to main div so that it will be easy for us while applying locomotive JS*/
+    position: relative;  /* Aise hi kar rahe hai. Wrong Reason -> We are lifting the main div above so that the video does not hides it. It is usually better to make position relative as compared to absolute*/
+    background-color: rgba(0, 0, 0, 0.37);  /*0.37 is for transparency so that we can see the video playing through the black coloured main div on top of it*/
+}
+#page1{
+    height: 100vh;  /*We don't use % cuz' that is wrt parent(relative to the container not absolute like px or vh or vw) and here parent's(main div) height is 0. So, we use vh(viewport height) which refers to screen size*/
+    width: 100%;
+    position: relative;  
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;  /*Now the main axis becomes vertical and the cross axis becomes horizontal*/
+    text-align: center;
+    z-index: 10; /*Because we don't want cursor-blur to come over the text of page 1, so we move page 1 a unit higher in z-axis than the blur cursor. Same goes for page 2*/
+}
+#page1 h1{
+    font-size: 90px;
+    font-weight: 900;
+    position: relative;  
+}
+#page1 h1::before{    /*These are pseudo elements which are used for writing in CSS which is otherwise not possible. Here, we are writing our content before h1*/
+    content: "EAT. DRINK. PLAY.";
+    color: #000;
+    position: absolute;
+    top: -4px;    /*Note that we made h1 position relative*/
+    left: -4px;
+    -webkit-text-stroke: 2px #95C11E;  /*It is a kind of border, but unlike border where we have to give 3 properties, we give 2 properties here: width and color*/
+    z-index: -1;  /*So that black and green border comes beneath the h1 text*/
+}
+#page1 h2{
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#page1 p{
+    font-size: 14px;
+    font-weight: 500;
+    width: 40%;
+}
+
+#page2{
+    height: 100vh; 
+    width: 100%;  /*Width dene ka zarurat nhi hai agar 100% hi rakhna hai toh*/
+    z-index: 10;
+}
