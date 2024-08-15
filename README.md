@@ -1,1 +1,1 @@
-This is a basic frontend project
+Front-end for Golf Course management system
